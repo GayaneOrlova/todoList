@@ -1,0 +1,13 @@
+todolist = [
+    {
+        value: 'text 1',
+        id: 123,
+        checked:ture,
+    },
+    {
+        value: 'text 2',
+        id: 4235345,
+        checked: false,
+    },
+    // ......
+]
