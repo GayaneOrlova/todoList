@@ -2,13 +2,20 @@ import React, { useState } from "react"
 import './index.css';
 import DoubleClickInput from '../doubleClickInput/DoubleClickInput'
 
-function ItemOfList ({item, onItemRemove, onCheckedItem}) {
+function ItemOfList ({item, onItemRemove, onCheckedItem, changeValue}) {
 
     const [showInputForChange, setShowInputForChange] = useState(false);
     const handleDoubleClick = () => {
         setShowInputForChange(true);
         console.log('Double click!');
     };
+
+    const onChangeValue = (value) =>{
+        changeValue(value, item.id)
+    }
+    const closeInputForChange = () => {
+        setShowInputForChange(false);
+    }
 
 
 
@@ -31,7 +38,11 @@ function ItemOfList ({item, onItemRemove, onCheckedItem}) {
             </div>
 
 
-            {showInputForChange ? <DoubleClickInput text={item.value}/> : ''}
+            {showInputForChange ?
+            <DoubleClickInput text={item.value} 
+            onChangeValue={onChangeValue}
+            onCloseInputForChange={closeInputForChange}/>
+            : ''}
 
             <button className="delete__none" onClick={() => onItemRemove(item.id)}></button>
         </li>

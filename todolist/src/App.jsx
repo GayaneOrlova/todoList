@@ -50,7 +50,7 @@ function App() {
     // console.log(newList);
   }
 
-  
+
 
 
 
@@ -96,8 +96,16 @@ function App() {
     }
 
     setToDoList(newList);
-    
     setCheckingItems(checkingItems)
+  }
+
+
+  const changeValue = (value, id) =>{
+    // const currentItem = toDoList.find((item) => item.id === id);
+    const currentItemIndex = toDoList.findIndex((item) => item.id === id);
+    const newList = [...toDoList];
+    newList[currentItemIndex].value = value;
+    setToDoList(newList);
   }
 
 
@@ -120,6 +128,8 @@ function App() {
           onCheckedItem={onTodoItemChecked}
           onAllItems={onAllItems}
           onClearComplited={onClearComplited}
+          changeValue={changeValue}
+
 
         />
 
