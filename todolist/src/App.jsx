@@ -6,6 +6,7 @@ import Input from './components/Input';
 import DoList from './components/list';
 import CountOfUncheckedItems from './components/countOfUncheckedItems/CountOfUncheckedItems';
 import FilterStatusOfItems from './components/filter';
+import ToggleCheckedItems from './components/toogle/ToggleCheck';
 
 //function of generation random number for id
  const generateRandomID =(min = 1, max = 1000) => {
@@ -49,12 +50,10 @@ function App() {
     // console.log(newList);
   }
 
-
   const [filteredTodoList, setFilteredTodoList] = useState(toDoList);
   
   useEffect(() => {
     setFilteredTodoList(toDoList);
-    console.log('da')
     }, [toDoList]
   )
 
@@ -73,29 +72,51 @@ function App() {
     setFilteredTodoList(toDoList);
   }
 
-
   const onClearComplited = () => {
     const newList = toDoList.filter((item) => item.checked === false);
     setToDoList(newList);
-
   }
 
 
+  const [checkingItems, setCheckingItems] = useState()
 
+  const onToogleCheck = () => {
+     
+    let checkingItems = toDoList.find((item) => item.checked === false);
+    const newList = [...toDoList];
 
+    if (checkingItems) {
+      newList.forEach(item => item.checked = true)
+    } else {
+      newList.forEach(item => item.checked = false)
+    }
+
+    setToDoList(newList);
+    
+    setCheckingItems(checkingItems)
+  }
 
 
   return (
     <>
       <Title />
       <section className="todoapp">
-        <Input onChange={addItem} />
+        <div className='input'>
+          {toDoList.length ? 
+            <ToggleCheckedItems 
+              onToogleCheck={onToogleCheck} 
+              checkingItems={checkingItems}
+            /> : ''}
+        
 
+          <Input onChange={addItem} />
+        </div>
         <DoList toDoList={filteredTodoList}
           onItemRemove={onTodoItemRemove}
           onCheckedItem={onTodoItemChecked}
           onAllItems={onAllItems}
           onClearComplited={onClearComplited}
+
         />
 
         <div className={toDoList.length ? 'visible' : 'invisible'}>
@@ -106,7 +127,7 @@ function App() {
             onActiveItems={onActiveItems}
             onAllItems={onAllItems}
             onClearComplited={onClearComplited}
-            toDoList = {toDoList}
+            toDoList={toDoList}
           />
         </div>
 

@@ -1,7 +1,5 @@
 import React from 'react'
-// import styles from "./Title.module.css"
-
-import './App.css';
+import './index.css';
 
 
 function Title() {

@@ -1,6 +1,5 @@
 import React, {useState } from "react"
-// import styles from "./Input.module.css"
-import './App.css';
+import './index.css';
 
 function Input ({onChange}) {
     const [text, setItem] = useState('');

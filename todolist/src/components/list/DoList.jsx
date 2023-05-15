@@ -1,12 +1,16 @@
 import React from 'react'
-// import styles from './DoList.module.css'
-import './App.css';
-import ItemOfList from "../li_item"
+import './index.css';
+import ItemOfList from "../li_item/LiItem"
 
 
-function DoList ({toDoList, onItemRemove, onCheckedItem, onActiveItems, onComplitedItems}) {
+function DoList ({toDoList, onItemRemove, onCheckedItem, onActiveItems, onComplitedItems, onMouseOver, onMouseOut}) {
     const listItems = toDoList.map((item) =>
-        <ItemOfList item={item} key={item.id} onItemRemove={onItemRemove} onCheckedItem = {onCheckedItem}/>
+        <ItemOfList 
+            item={item} 
+            key={item.id} 
+            onItemRemove={onItemRemove} 
+            onCheckedItem={onCheckedItem}
+        />
   );
   
     return (
