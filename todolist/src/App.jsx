@@ -50,6 +50,10 @@ function App() {
     // console.log(newList);
   }
 
+  
+
+
+
   const [filteredTodoList, setFilteredTodoList] = useState(toDoList);
   
   useEffect(() => {

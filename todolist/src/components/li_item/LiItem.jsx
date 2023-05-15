@@ -11,6 +11,7 @@ function ItemOfList ({item, onItemRemove, onCheckedItem}) {
     };
 
 
+
     return (
         <li className="input__block" onDoubleClick={handleDoubleClick}>
             <div className={item.checked ? 'checked' : 'nochecked'} id={item.id}>
