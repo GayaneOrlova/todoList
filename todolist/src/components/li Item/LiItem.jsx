@@ -5,9 +5,9 @@ import DoubleClickInput from '../doubleClickInput/DoubleClickInput'
 function ItemOfList ({item, onItemRemove, onCheckedItem, changeValue}) {
 
     const [showInputForChange, setShowInputForChange] = useState(false);
+
     const handleDoubleClick = () => {
         setShowInputForChange(true);
-        console.log('Double click!');
     };
 
     const onChangeValue = (value) =>{
@@ -17,11 +17,10 @@ function ItemOfList ({item, onItemRemove, onCheckedItem, changeValue}) {
         setShowInputForChange(false);
     }
 
-
-
     return (
-        <li className="input__block" onDoubleClick={handleDoubleClick}>
-            <div className={item.checked ? 'checked' : 'nochecked'} id={item.id}>
+        <li className="input__block" >
+            <div className={item.checked ? 'checked' : 'nochecked'} id={item.id} onDoubleClick={handleDoubleClick}>
+             
                 <div className="view">
                     <label htmlFor={'radio__button' + item.id}
                         className={item.checked ? 'change__opacity' : 'nochange'}>
@@ -31,18 +30,19 @@ function ItemOfList ({item, onItemRemove, onCheckedItem, changeValue}) {
                             className="toggle"
                             type="checkbox"
                             onClick={() => onCheckedItem(item.id)}
-                            defaultChecked={item.checked}/>
-                        {item.value}
+                            defaultChecked={item.checked} />
+                        {showInputForChange ?
+                            <DoubleClickInput text={item.value}
+                                onChangeValue={onChangeValue}
+                                onCloseInputForChange={closeInputForChange} />
+                            :
+                            <span>
+                                {item.value}
+                            </span>
+                        }
                     </label>
-                </div>
             </div>
-
-
-            {showInputForChange ?
-            <DoubleClickInput text={item.value} 
-            onChangeValue={onChangeValue}
-            onCloseInputForChange={closeInputForChange}/>
-            : ''}
+            </div>
 
             <button className="delete__none" onClick={() => onItemRemove(item.id)}></button>
         </li>

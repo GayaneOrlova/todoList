@@ -1,30 +1,31 @@
-import React, {useState } from "react"
+import React, { useState } from "react"
 import './index.css';
 
-function Input ({onChange}) {
-    const [text, setItem] = useState('');
+function Input({ addItem }) {
+    const [text, setText] = useState('');
 
-    const handleKeyUp = (event) => {
+    const onFormSubmit = (event) => {
         event.preventDefault();
+        if (!text.trim()) {
+            return
+        }
+        addItem(text);
+        setText('');
+    }
 
-        if (event.key !== 'Enter') {
-            setItem(event.target.value);
-        }
-        if (event.key === 'Enter' && text.length > 0) {     
-            onChange(text);
-            event.target.value = '';
-        }
-    };
-    
+    const onInputChange = (event) => {
+        setText(event.target.value);
+    }
 
     return (
-        <>
+        <form onSubmit={onFormSubmit}>
             <input
                 className="new__todo"
                 placeholder="What needs to be done?"
-                onKeyUp={handleKeyUp}
+                value={text}
+                onChange={onInputChange}
             />
-        </>
+        </form>
     )
 }
 

@@ -10,16 +10,16 @@ function FilterStatusOfItems({onComplitedItems, onAllItems, onActiveItems, onCle
         <div className="filter">
             <ul>
                 <li>
-                    <button onClick={() => onAllItems()}>All</button>
+                    <button onClick={onAllItems}>All</button>
                 </li>
                 <li>
-                    <button onClick={() => onComplitedItems()}>Complited</button>
+                    <button onClick={onComplitedItems}>Complited</button>
                 </li>
                 <li>
-                    <button onClick={() => onActiveItems()}>Active</button>
+                    <button onClick={onActiveItems}>Active</button>
                 </li>
             </ul>
-            <button onClick={() => onClearComplited()} className={complitedClass}>Clear complited</button>
+            <button onClick={onClearComplited} className={complitedClass}>Clear complited</button>
         </div>
     )
 }
