@@ -84,9 +84,8 @@ function App() {
     const newList = toDoList.map((item) => {
       if (item.id === id) {
         return {...item, value};
-       
       }
-      return {...item}
+      return item;
     })
     setToDoList(newList);
   }
