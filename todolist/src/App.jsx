@@ -83,10 +83,10 @@ function App() {
   const onChangeValue = (value, id) => {
     const newList = toDoList.map((item) => {
       if (item.id === id) {
-        item.value = value;
-        return item
+        return {...item, value};
+       
       }
-      return item
+      return {...item}
     })
     setToDoList(newList);
   }
