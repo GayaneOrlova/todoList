@@ -1,5 +1,6 @@
 import React, { useState } from "react"
-import './index.css';
+import styles from './Input.module.css'
+
 
 function Input({ addItem }) {
     const [text, setText] = useState('');
@@ -20,7 +21,7 @@ function Input({ addItem }) {
     return (
         <form onSubmit={onFormSubmit}>
             <input
-                className="new__todo"
+                className={styles.new__todo}
                 placeholder="What needs to be done?"
                 value={text}
                 onChange={onInputChange}

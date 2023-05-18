@@ -1,6 +1,6 @@
 import React from 'react'
-import './index.css';
-import ItemOfList from "../li Item/LiItem"
+import styles from './ToDoList.module.css';
+import ItemOfList from "../itemOfList/ItemOfList"
 
 
 function ToDoList (props) {
@@ -12,7 +12,7 @@ function ToDoList (props) {
     } = props;
 
     return (
-        <ul className="todo__list">
+        <ul className={styles.todo__list}>
             {toDoList.map((item) =>
                 <ItemOfList
                     item={item}
@@ -20,6 +20,7 @@ function ToDoList (props) {
                     onItemRemove={onItemRemove}
                     onCheckedItem={onCheckedItem}
                     changeValue={onChangeValue}
+                    className="todo__list-item"
                 />)}
         </ul>
     )

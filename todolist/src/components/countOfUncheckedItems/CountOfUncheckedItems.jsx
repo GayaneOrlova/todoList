@@ -1,12 +1,14 @@
 import React from "react";
 
 function CountOfUncheckedItems ({toDoList}) {
-    let arrOfCountChecked = toDoList.filter((item) => item.checked === false);
+    const arrOfCountChecked = toDoList.filter((item) => !item.checked);
+    const countOfUncheckedItems = arrOfCountChecked.length;
 
-
-    let countOfUncheckedItems = arrOfCountChecked.length;
-
-    return (<div>{countOfUncheckedItems} items left</div>);
+    return (
+        <div>{countOfUncheckedItems}
+            items left
+        </div>
+    );
 }
 
 export default CountOfUncheckedItems

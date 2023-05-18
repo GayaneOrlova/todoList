@@ -1,10 +1,9 @@
 import React from 'react'
-import './index.css';
-
+import styles from './Title.module.css';
 
 function Title() {
   return (
-    <h1 className="list__name">todos</h1>
+    <h1 className={styles.list__name}>todos</h1>
   )
 }
 

@@ -3,10 +3,10 @@ import { useState } from 'react';
 import './App.css';
 import Title from './components/title/Title';
 import Input from './components/input/Input';
-import ToDoList from './components/list/ToDoList';
+import ToDoList from './components/toDoList/ToDoList';
 import CountOfUncheckedItems from './components/countOfUncheckedItems/CountOfUncheckedItems';
-import FilterStatusOfItems from './components/filter';
-import ToggleCheckedItems from './components/toogle/ToggleCheck';
+import FilterItemsByStatus from './components/filterItemsByStatus/FilterItemsByStatus';
+import ToggleOfCheck from './components/toggleOfCheck/ToggleOfCheck';
 
 //function of generation random number for id
 const generateRandomID = (min = 1, max = 1000) => {
@@ -18,7 +18,7 @@ const generateRandomID = (min = 1, max = 1000) => {
 function App() {
   const [toDoList, setToDoList] = useState([]);
 
-  const [filter, setFilter] = useState('all') //completed, active
+  const [filter, setFilter] = useState('all')
 
   const addItem = (text) => {
     const copyList = [...toDoList];
@@ -51,16 +51,8 @@ function App() {
     return item
   })
 
-  const onActiveItems = () => {
-    setFilter('active');
-  }
-
-  const onComplitedItems = () => {
-    setFilter('complited');
-  }
-
-  const onAllItems = () => {
-    setFilter('all');
+  const onFilterItems = (filterValue) => {
+    setFilter(filterValue);
   }
 
   const onClearComplited = () => {
@@ -68,24 +60,20 @@ function App() {
     setToDoList(newList);
   }
 
-
   const onToogleCheck = () => {
     const isCheckedItem = toDoList.find((item) => !item.checked);
     const newList = toDoList.map((item) => {
-      if (isCheckedItem) {
-        return { ...item, checked: true }
-      }
-      return { ...item, checked: false }
+        return { ...item, checked: isCheckedItem}
     })
     setToDoList(newList);
   }
 
   const onChangeValue = (value, id) => {
     const newList = toDoList.map((item) => {
-      if (item.id === id) {
-        return {...item, value};
+      if (item.id !== id) {
+        return item;
       }
-      return item;
+      return {...item, value};
     })
     setToDoList(newList);
   }
@@ -97,27 +85,26 @@ function App() {
       <section className="todoapp">
         <div className='input'>
           {toDoList.length ?
-            <ToggleCheckedItems
+            <ToggleOfCheck
               onToogleCheck={onToogleCheck}
-            /> : ''}
-
+            />
+            :
+            ''
+          }
           <Input addItem={addItem} />
         </div>
+
         <ToDoList toDoList={toDoListRender}
           onItemRemove={onTodoItemRemove}
           onCheckedItem={onTodoItemChecked}
-          onAllItems={onAllItems}
           onClearComplited={onClearComplited}
           onChangeValue={onChangeValue}
         />
 
         <div className={toDoList.length ? 'visible' : 'invisible'}>
           <CountOfUncheckedItems toDoList={toDoList} />
-
-          <FilterStatusOfItems
-            onComplitedItems={onComplitedItems}
-            onActiveItems={onActiveItems}
-            onAllItems={onAllItems}
+          <FilterItemsByStatus
+            onFilterItems ={onFilterItems}
             onClearComplited={onClearComplited}
             toDoList={toDoList}
           />

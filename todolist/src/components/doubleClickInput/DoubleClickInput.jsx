@@ -1,5 +1,5 @@
 import React from "react";
-import './index.css';
+import styles from './DoubleClickInput.module.css';
 
 function DoubleClickInput({ text, onChangeValue, onCloseInputForChange }) {
 
@@ -22,7 +22,7 @@ function DoubleClickInput({ text, onChangeValue, onCloseInputForChange }) {
       onBlur={onLoseFocus}
       onKeyUp={handleKeyUp}
       autoFocus
-      className="double__click__input"
+      className={styles.double__click__input}
       defaultValue={text}
     />
   );
