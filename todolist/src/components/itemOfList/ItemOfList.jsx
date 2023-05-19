@@ -19,17 +19,12 @@ function ItemOfList ({item, onItemRemove, onCheckedItem, changeValue, className}
 
     return (
         <li className={`${styles.input__block} ${className}`}>
-            <div
-                className={item.checked ? `${styles.checked}` : `${styles.nochecked}`}
-                id={item.id}
-                onDoubleClick={handleDoubleClick}
-            >
-                <div className="view">
-                    <label
-                        htmlFor={'radio__button' + item.id}
-                        className={item.checked ? `${styles.change__opacity}` : `${styles.nochange}`}
-                    >
+            <div className={item.checked ? `${styles.checked}` : `${styles.nochecked}`}>
+                <div className={styles.view}>
+                    <label htmlFor={'radio__button' + item.id}>
                         <div className={styles.item__radio__button}> </div>
+                    </label>
+                    
                         <input
                             id={'radio__button' + item.id}
                             className={styles.toggle}
@@ -37,18 +32,21 @@ function ItemOfList ({item, onItemRemove, onCheckedItem, changeValue, className}
                             onClick={() => onCheckedItem(item.id)}
                             defaultChecked={item.checked}
                         />
-                            {showInputForChange ?
 
-                            <DoubleClickInput text={item.value}
-                                onChangeValue={onChangeValue}
-                                onCloseInputForChange={closeInputForChange}
-                            />
-                            :
-                            <span>
-                                {item.value}
-                            </span>
-                        }
-                    </label>
+                        {!showInputForChange ?
+                        <p
+                            className={item.checked ? `${styles.change__opacity}` : `${styles.nochange}`}
+                            onDoubleClick={handleDoubleClick}
+                        >
+                            {item.value}
+                        </p>
+                        :
+                        <DoubleClickInput text={item.value}
+                            onChangeValue={onChangeValue}
+                            onCloseInputForChange={closeInputForChange}
+                        />
+                    }
+                    
                 </div>
             </div>
 
