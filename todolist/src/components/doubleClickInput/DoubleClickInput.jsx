@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from './DoubleClickInput.module.css';
 
 function DoubleClickInput({ text, onChangeValue, onCloseInputForChange }) {
 
-  const onLoseFocus = (event) => {
+  const [inputValue, setInputValue] = useState(text);
+
+  const onLoseFocus = event => {
     onChangeValue(event.target.value);
     onCloseInputForChange(true)
   }
+
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
 
   const handleKeyUp = (event) => {
     event.preventDefault();
@@ -19,11 +25,12 @@ function DoubleClickInput({ text, onChangeValue, onCloseInputForChange }) {
 
   return (
     <input
+      onChange={handleInputChange}
       onBlur={onLoseFocus}
       onKeyUp={handleKeyUp}
       autoFocus
       className={styles.double__click__input}
-      defaultValue={text}
+      defaultValue={inputValue}
     />
   );
 }
