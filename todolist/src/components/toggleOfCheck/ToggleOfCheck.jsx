@@ -5,7 +5,7 @@ function ToggleOfCheck({onToogleCheck, isCheckedItem}) {
     return (
         <button
             title="Mark all as complete"
-            className={`${styles.toogle__button} ${{isCheckedItem} ? `${styles.toggle__noopasity}` : `${styles.toggle__opasity}`}`}
+            className={`${styles.toogle__button} ${isCheckedItem ? styles.toggle__noopasity : styles.toggle__opasity}`}
             onClick={onToogleCheck}
         />
     )

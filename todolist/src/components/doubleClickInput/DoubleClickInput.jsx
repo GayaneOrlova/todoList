@@ -18,7 +18,7 @@ function DoubleClickInput({ text, onChangeValue, onCloseInputForChange }) {
     event.preventDefault();
 
     if (event.key === 'Enter' && text.length > 0) {
-      onChangeValue(event.target.value);
+      onChangeValue(inputValue);
       onCloseInputForChange(true)
     }
   };
@@ -31,6 +31,7 @@ function DoubleClickInput({ text, onChangeValue, onCloseInputForChange }) {
       autoFocus
       className={styles.double__click__input}
       defaultValue={inputValue}
+      value={inputValue}
     />
   );
 }

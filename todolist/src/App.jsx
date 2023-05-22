@@ -7,12 +7,7 @@ import ToDoList from './components/toDoList/ToDoList';
 import CountOfUncheckedItems from './components/countOfUncheckedItems/CountOfUncheckedItems';
 import FilterItemsByStatus from './components/filterItemsByStatus/FilterItemsByStatus';
 import ToggleOfCheck from './components/toggleOfCheck/ToggleOfCheck';
-
-//function of generation random number for id
-const generateRandomID = (min = 1, max = 1000) => {
-  let rand = min - 0.5 + Math.random() * (max - min + 1);
-  return Math.round(rand);
-}
+import generateRandomID from './utils/generateRandomID'
 
 
 function App() {
@@ -63,7 +58,7 @@ function App() {
   const onToogleCheck = () => {
     const isCheckedItem = toDoList.find((item) => !item.checked);
     const newList = toDoList.map((item) => {
-        return { ...item, checked: isCheckedItem}
+      return { ...item, checked: isCheckedItem }
     })
     setToDoList(newList);
   }
@@ -73,7 +68,7 @@ function App() {
       if (item.id !== id) {
         return item;
       }
-      return {...item, value};
+      return { ...item, value };
     })
     setToDoList(newList);
   }
@@ -84,31 +79,34 @@ function App() {
       <Title />
       <section className="todoapp">
         <div className='input'>
-          {toDoList.length ?
+          {!!toDoList.length &&
             <ToggleOfCheck
               onToogleCheck={onToogleCheck}
             />
-            :
-            ''
           }
           <Input addItem={addItem} />
         </div>
 
-        <ToDoList toDoList={toDoListRender}
+        <ToDoList
+          toDoList={toDoListRender}
           onItemRemove={onTodoItemRemove}
           onCheckedItem={onTodoItemChecked}
           onClearComplited={onClearComplited}
           onChangeValue={onChangeValue}
         />
 
-        <div className={toDoList.length ? 'visible' : 'invisible'}>
-          <CountOfUncheckedItems toDoList={toDoList} />
-          <FilterItemsByStatus
-            onFilterItems ={onFilterItems}
-            onClearComplited={onClearComplited}
-            toDoList={toDoList}
-          />
-        </div>
+        {toDoList.length ?
+          <div className='visible'>
+            <CountOfUncheckedItems toDoList={toDoList} />
+            <FilterItemsByStatus
+              onFilterItems={onFilterItems}
+              onClearComplited={onClearComplited}
+              toDoList={toDoList}
+            />
+          </div>
+          :
+          null
+        }
 
       </section>
     </>
