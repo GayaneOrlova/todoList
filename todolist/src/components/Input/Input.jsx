@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styles from "./Input.module.css";
 
+import { useDispatch } from "react-redux"; //new
+
 function Input({ addItem }) {
   const [text, setText] = useState("");
 
