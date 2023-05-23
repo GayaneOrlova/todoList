@@ -2,11 +2,14 @@ import React from "react";
 import styles from "./ToDoList.module.css";
 import ItemOfList from "../itemOfList/ItemOfList";
 
+import { useSelector } from "react-redux";
+
+// const selectToDos  = state => state.
+
 function ToDoList(props) {
+
+const toDoList = useSelector((state) => state.todos.toDoList)
   const {
-    toDoList,
-    onItemRemove,
-    onCheckedItem,
     onChangeValue,
   } = props;
 
@@ -16,8 +19,6 @@ function ToDoList(props) {
         <ItemOfList
           item={item}
           key={item.id}
-          onItemRemove={onItemRemove}
-          onCheckedItem={onCheckedItem}
           changeValue={onChangeValue}
           className="todo__list-item"
         />

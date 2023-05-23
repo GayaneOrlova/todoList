@@ -2,16 +2,16 @@ import React, { useState } from "react";
 import styles from "./Input.module.css";
 
 import { useDispatch } from "react-redux"; //new
+import {addItem} from "../../store/todoSlice";
 
-function Input({ addItem }) {
+function Input () {
   const [text, setText] = useState("");
+  
+  const dispatch = useDispatch();
 
   const onFormSubmit = (event) => {
     event.preventDefault();
-    if (!text.trim()) {
-      return;
-    }
-    addItem(text);
+    dispatch(addItem(text));
     setText("");
   };
 

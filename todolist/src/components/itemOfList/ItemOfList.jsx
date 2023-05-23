@@ -1,8 +1,22 @@
 import React, { useState } from "react"
 import styles from './ItemOfList.module.css'
-import DoubleClickInput from '../doubleClickInput/DoubleClickInput'
+import DoubleClickInput from '../doubleClickInput/DoubleClickInput';
+import { onTodoItemChecked } from "../../store/todoSlice";
+import { onTodoItemRemove } from "../../store/todoSlice";
 
-function ItemOfList({ item, onItemRemove, onCheckedItem, changeValue, className }) {
+import { useDispatch } from "react-redux";
+
+function ItemOfList({ item, changeValue, className }) {
+
+const dispatch = useDispatch();
+
+const onCheckedItem = (id) => {
+  dispatch(onTodoItemChecked(id))
+}
+
+const onItemRemove = (id) => {
+  dispatch(onTodoItemRemove(id))
+}
 
   const [showInputForChange, setShowInputForChange] = useState(false);
 
