@@ -7,7 +7,7 @@ export const todoSlice = createSlice({
     toDoList: [],
     filter: "all",
   },
-  
+
   reducers: {
     addItem: (state, action) => {
       if (!action.payload.trim()) {
@@ -20,41 +20,45 @@ export const todoSlice = createSlice({
       };
       state.toDoList.push(newListItem);
     },
-    
+
     onTodoItemChecked: (state, action) => {
       state.toDoList = state.toDoList.map((item) => {
         if (item.id !== action.payload) {
           return item;
-        } return { ...item, checked: !item.checked };
-      })
+        }
+        return { ...item, checked: !item.checked };
+      });
     },
-    
-   onTodoItemRemove: (state, action) => {
-      state.toDoList = state.toDoList.filter((item) => item.id !== action.payload);
+
+    onTodoItemRemove: (state, action) => {
+      state.toDoList = state.toDoList.filter(
+        (item) => item.id !== action.payload
+      );
     },
-    
-    //надо проверить
+
     onClearComplited: (state) => {
       state.toDoList = state.toDoList.filter((item) => !item.checked);
     },
-  
+
     onToogleCheck: (state) => {
       const isCheckedItem = state.toDoList.find((item) => !item.checked);
       state.toDoList = state.toDoList.map((item) => {
-        return { ...item, checked: isCheckedItem }
-      })
+        return { ...item, checked: isCheckedItem };
+      });
     },
-    
+
     onChangeValue: (state, action) => {
       state.toDoList = state.toDoList.map((item) => {
         if (item.id !== action.payload.id) {
           return item;
         }
-        return { ...item, value: action.payload };
-      })
+        return { ...item, value: action.payload.value };
+      });
+    },
 
-    }
-  
+    setFilter: (state, action) => {
+      state.filter = action.payload;
+    },
   },
 });
 
@@ -64,7 +68,8 @@ export const {
   onTodoItemRemove,
   onClearComplited,
   onToogleCheck,
-  onChangeValue
+  onChangeValue,
+  setFilter,
 } = todoSlice.actions;
 
 export default todoSlice.reducer;
