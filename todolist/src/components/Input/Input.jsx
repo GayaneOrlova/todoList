@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import styles from "./Input.module.css";
 
-function Input({ addItem }) {
-  const [text, setText] = useState("");
 
+function Input (props) {
+  const [text, setText] = useState("");
+  
   const onFormSubmit = (event) => {
     event.preventDefault();
-    if (!text.trim()) {
-      return;
-    }
-    addItem(text);
+    props.onFormSubmit(text);
     setText("");
   };
 

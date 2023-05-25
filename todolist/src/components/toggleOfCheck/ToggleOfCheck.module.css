@@ -1,4 +1,4 @@
-.toogle__button{
+.toogle__button {
     width: 60px;
     height: 34px;
     font-size: 0;
@@ -7,7 +7,7 @@
     transform: rotate(90deg);
 }
 
-.toogle__button:before{
+.toogle__button:before {
     content: '❯';
     font-size: 22px;
     color: #e6e6e6;

@@ -1,7 +1,16 @@
 import React from "react";
 import styles from "./FilterItemsByStatus.module.css";
+import { useDispatch } from "react-redux";
+import { onClearComplited, setFilter } from "../../store/todoSlice";
 
-function FilterItemsByStatus({ onFilterItems, onClearComplited, toDoList }) {
+function FilterItemsByStatus() {
+
+  const dispatch = useDispatch();
+
+  const onFilterItems = (filterValue) => {
+    dispatch(setFilter(filterValue));
+  }
+
   return (
     <div className={styles.filter}>
       <ul className={styles.filter__button}>
@@ -15,7 +24,7 @@ function FilterItemsByStatus({ onFilterItems, onClearComplited, toDoList }) {
           <button onClick={() => onFilterItems("active")}>Active</button>
         </li>
       </ul>
-      <button onClick={onClearComplited}>Clear complited</button>
+      <button onClick={() => dispatch(onClearComplited())}>Clear complited</button>
     </div>
   );
 }
