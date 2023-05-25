@@ -27,9 +27,7 @@ function App() {
           <ToggleOfCheck />
           <Input onFormSubmit={onAddItem}/>
         </div>
-        <ToDoList
-        // toDoList={toDoListRender}
-        />
+        <ToDoList />
         {toDoList.length ?
           <div className='visible'>
             <CountOfUncheckedItems toDoList={toDoList} />
