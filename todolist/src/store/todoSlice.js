@@ -1,6 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import generateRandomID from "../utils/generateRandomID";
 
+type Item = {
+  value: string,
+  id: String,
+  checked: Boolean,
+};
+
+
 export const todoSlice = createSlice({
   name: "todos",
   initialState: {
