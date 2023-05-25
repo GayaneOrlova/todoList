@@ -1,32 +1,30 @@
 import React, { useState } from "react"
 import styles from './ItemOfList.module.css'
 import DoubleClickInput from '../doubleClickInput/DoubleClickInput';
-import { onTodoItemChecked } from "../../store/todoSlice";
-import { onTodoItemRemove } from "../../store/todoSlice";
-
+import { onTodoItemChecked, onTodoItemRemove, onChangeValue } from "../../store/todoSlice";
 import { useDispatch } from "react-redux";
 
-function ItemOfList({ item, changeValue, className }) {
-
-const dispatch = useDispatch();
-
-const onCheckedItem = (id) => {
-  dispatch(onTodoItemChecked(id))
-}
-
-const onItemRemove = (id) => {
-  dispatch(onTodoItemRemove(id))
-}
-
+function ItemOfList({ item, className }) {
+  
   const [showInputForChange, setShowInputForChange] = useState(false);
+  const dispatch = useDispatch();
 
+  const onCheckedItem = () => {
+    dispatch(onTodoItemChecked(item.id))
+  }
+  
+  const onItemRemove = () => {
+    dispatch(onTodoItemRemove(item.id))
+  }
+  
+  const changeValue = (value) => {
+    dispatch(onChangeValue({value, id: item.id}))
+  }
+  
   const handleDoubleClick = () => {
     setShowInputForChange(true);
   };
-
-  const onChangeValue = (value) => {
-    changeValue(value, item.id)
-  }
+  
   const closeInputForChange = () => {
     setShowInputForChange(false);
   }
@@ -43,7 +41,7 @@ const onItemRemove = (id) => {
             id={'radio__button' + item.id}
             className={styles.toggle}
             type="checkbox"
-            onClick={() => onCheckedItem(item.id)}
+            onClick={onCheckedItem}
             defaultChecked={item.checked}
           />
 
@@ -56,7 +54,7 @@ const onItemRemove = (id) => {
             </p>
             :
             <DoubleClickInput text={item.value}
-              onChangeValue={onChangeValue}
+              onChangeValue={changeValue}
               onCloseInputForChange={closeInputForChange}
             />
           }
@@ -66,11 +64,10 @@ const onItemRemove = (id) => {
 
       <button
         className={styles.delete__none}
-        onClick={() => onItemRemove(item.id)}
+        onClick={onItemRemove}
       />
     </li>
   )
 }
 
 export default ItemOfList
-

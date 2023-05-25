@@ -1,19 +1,15 @@
 import React from "react";
 import styles from "./FilterItemsByStatus.module.css";
 import { useDispatch } from "react-redux";
-import { onClearComplited } from "../../store/todoSlice";
-// import {toDoList} from '../../store/todoSlice';
+import { onClearComplited, setFilter } from "../../store/todoSlice";
 
-
-function FilterItemsByStatus({ onFilterItems }) {
-
-  // const toDoList = useSelector((state) => state.todos.toDoList);
+function FilterItemsByStatus() {
 
   const dispatch = useDispatch();
 
-  // const onClearComplited = () => {
-  //   dispatch(onClearComplited)
-  // }
+  const onFilterItems = (filterValue) => {
+    dispatch(setFilter(filterValue));
+  }
 
   return (
     <div className={styles.filter}>

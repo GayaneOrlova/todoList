@@ -1,6 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
-function CountOfUncheckedItems({ toDoList }) {
+function CountOfUncheckedItems() {
+
+  const toDoList = useSelector((state) => state.todos.toDoList);
+
   const arrOfCountChecked = toDoList.filter((item) => !item.checked);
   const countOfUncheckedItems = arrOfCountChecked.length;
 
