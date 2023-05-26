@@ -1,22 +1,30 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import generateRandomID from "../utils/generateRandomID";
 
-type Item = {
-  value: string,
-  id: String,
-  checked: Boolean,
+
+export type Item = {
+  value: string;
+  id: string;
+  checked: boolean;
+};
+
+type ItemState = {
+  toDoList: Item[];
+  filter: string;
+};
+
+const initialState: ItemState = {
+  toDoList: [],
+  filter: "all",
 };
 
 
 export const todoSlice = createSlice({
   name: "todos",
-  initialState: {
-    toDoList: [],
-    filter: "all",
-  },
+  initialState,
 
   reducers: {
-    addItem: (state, action) => {
+    addItem: (state, action: PayloadAction<string>) => {
       if (!action.payload.trim()) {
         return;
       }
@@ -28,7 +36,7 @@ export const todoSlice = createSlice({
       state.toDoList.push(newListItem);
     },
 
-    onTodoItemChecked: (state, action) => {
+    onTodoItemChecked: (state, action: PayloadAction<string>) => {
       state.toDoList = state.toDoList.map((item) => {
         if (item.id !== action.payload) {
           return item;
@@ -37,9 +45,8 @@ export const todoSlice = createSlice({
       });
     },
 
-    onTodoItemRemove: (state, action) => {
-      state.toDoList = state.toDoList.filter(
-        (item) => item.id !== action.payload
+    onTodoItemRemove: (state, action: PayloadAction<string>) => {
+      state.toDoList = state.toDoList.filter((item) => item.id !== action.payload
       );
     },
 
@@ -48,13 +55,13 @@ export const todoSlice = createSlice({
     },
 
     onToogleCheck: (state) => {
-      const isCheckedItem = state.toDoList.find((item) => !item.checked);
+      const isCheckedItem = Boolean(state.toDoList.find((item) => !item.checked));
       state.toDoList = state.toDoList.map((item) => {
         return { ...item, checked: isCheckedItem };
       });
     },
 
-    onChangeValue: (state, action) => {
+    onChangeValue: (state, action: PayloadAction<{id: string; value: string}>) => {
       state.toDoList = state.toDoList.map((item) => {
         if (item.id !== action.payload.id) {
           return item;
@@ -63,7 +70,7 @@ export const todoSlice = createSlice({
       });
     },
 
-    setFilter: (state, action) => {
+    setFilter: (state, action: PayloadAction<string>) => {
       state.filter = action.payload;
     },
   },
@@ -78,5 +85,6 @@ export const {
   onChangeValue,
   setFilter,
 } = todoSlice.actions;
+
 
 export default todoSlice.reducer;

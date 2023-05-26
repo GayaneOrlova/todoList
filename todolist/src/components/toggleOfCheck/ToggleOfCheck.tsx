@@ -1,13 +1,17 @@
 import React from "react";
 import styles from "./ToggleOfCheck.module.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { onToogleCheck } from "../../store/todoSlice";
 // import {isCheckedItem} from "../../store/todoSlice";
 
-function ToggleOfCheck() {
+type Props = {
 
-  const dispatch = useDispatch();
-  const toDoList = useSelector((state) => state.todos.toDoList);
+};
+
+const ToggleOfCheck: React.FC<Props> = (props)=>  {
+
+  const dispatch = useAppDispatch();
+  const toDoList = useAppSelector((state) => state.todos.toDoList);
   const isCheckedItem = toDoList.find((item) => !item.checked);
 
   return (

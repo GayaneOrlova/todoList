@@ -1,24 +1,30 @@
 import React, { useState } from "react"
 import styles from './ItemOfList.module.css'
 import DoubleClickInput from '../doubleClickInput/DoubleClickInput';
-import { onTodoItemChecked, onTodoItemRemove, onChangeValue } from "../../store/todoSlice";
-import { useDispatch } from "react-redux";
+import { onTodoItemChecked, onTodoItemRemove, onChangeValue, Item } from "../../store/todoSlice";
+import { useAppDispatch } from "../../store/hooks";
 
-function ItemOfList({ item, className }) {
+type Props = {
+  item: Item;
+  className: string;
+  // changeValue
+};
+
+const ItemOfList: React.FC<Props> = (props)=> {
   
   const [showInputForChange, setShowInputForChange] = useState(false);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const onCheckedItem = () => {
-    dispatch(onTodoItemChecked(item.id))
+    dispatch(onTodoItemChecked(props.item.id))
   }
   
   const onItemRemove = () => {
-    dispatch(onTodoItemRemove(item.id))
+    dispatch(onTodoItemRemove(props.item.id))
   }
   
-  const changeValue = (value) => {
-    dispatch(onChangeValue({value, id: item.id}))
+  const changeValue = (value: string) => {
+    dispatch(onChangeValue({value, id: props.item.id}))
   }
   
   const handleDoubleClick = () => {
@@ -30,30 +36,30 @@ function ItemOfList({ item, className }) {
   }
 
   return (
-    <li className={`${styles.input__block} ${className}`}>
-      <div className={item.checked ? `${styles.checked}` : `${styles.nochecked}`}>
+    <li className={`${styles.input__block} ${props.className}`}>
+      <div className={props.item.checked ? `${styles.checked}` : `${styles.nochecked}`}>
         <div className={styles.view}>
-          <label htmlFor={'radio__button' + item.id}>
+          <label htmlFor={'radio__button' + props.item.id}>
             <div className={styles.item__radio__button}> </div>
           </label>
 
           <input
-            id={'radio__button' + item.id}
+            id={'radio__button' + props.item.id}
             className={styles.toggle}
             type="checkbox"
             onClick={onCheckedItem}
-            defaultChecked={item.checked}
+            defaultChecked={props.item.checked}
           />
 
           {!showInputForChange ?
             <p
-              className={item.checked ? `${styles.change__opacity}` : `${styles.nochange}`}
+              className={props.item.checked ? `${styles.change__opacity}` : `${styles.nochange}`}
               onDoubleClick={handleDoubleClick}
             >
-              {item.value}
+              {props.item.value}
             </p>
             :
-            <DoubleClickInput text={item.value}
+            <DoubleClickInput text={props.item.value}
               onChangeValue={changeValue}
               onCloseInputForChange={closeInputForChange}
             />

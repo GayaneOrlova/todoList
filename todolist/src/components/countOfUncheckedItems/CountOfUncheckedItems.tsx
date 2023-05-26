@@ -1,9 +1,13 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../../store/hooks";
 
-function CountOfUncheckedItems() {
+type Props = {
+ 
+};
 
-  const toDoList = useSelector((state) => state.todos.toDoList);
+const CountOfUncheckedItems:React.FC<Props> = (props) => {
+
+  const toDoList = useAppSelector((state) => state.todos.toDoList);
 
   const arrOfCountChecked = toDoList.filter((item) => !item.checked);
   const countOfUncheckedItems = arrOfCountChecked.length;

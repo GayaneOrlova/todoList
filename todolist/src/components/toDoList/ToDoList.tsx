@@ -1,14 +1,18 @@
 import React, { useMemo } from "react";
 import styles from "./ToDoList.module.css";
 import ItemOfList from "../itemOfList/ItemOfList";
-import { useSelector } from "react-redux";
-import { onChangeValue } from "../../store/todoSlice";
+import { useAppSelector } from "../../store/hooks";
+import { Item, onChangeValue } from "../../store/todoSlice";
 
-function ToDoList(props) {
+type Props = {
 
-  const toDoList = useSelector((state) => state.todos.toDoList)
+};
 
-  const filter = useSelector((state) => state.todos.filter);
+const ToDoList: React.FC<Props> = (props)=> {
+
+  const toDoList = useAppSelector((state) => state.todos.toDoList)
+
+  const filter = useAppSelector((state) => state.todos.filter);
 
   const filterList = useMemo(() => {
     return toDoList.filter((item) => {
@@ -25,7 +29,7 @@ function ToDoList(props) {
         <ItemOfList
           item={item}
           key={item.id}
-          changeValue={onChangeValue}
+          // changeValue={onChangeValue}
           className="todo__list-item"
         />
       ))}

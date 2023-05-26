@@ -6,16 +6,16 @@ import ToDoList from './components/toDoList/ToDoList';
 import CountOfUncheckedItems from './components/countOfUncheckedItems/CountOfUncheckedItems';
 import FilterItemsByStatus from './components/filterItemsByStatus/FilterItemsByStatus';
 import ToggleOfCheck from './components/toggleOfCheck/ToggleOfCheck';
-import { useSelector, useDispatch } from 'react-redux';
-import { addItem } from './store/todoSlice';
+import { useAppDispatch, useAppSelector } from './store/hooks';
+import { Item, addItem } from './store/todoSlice';
 
 
 function App() {
-  const toDoList = useSelector((state) => state.todos.toDoList);
+  const toDoList = useAppSelector((state) => state.todos.toDoList);
+
+  const dispatch = useAppDispatch();
   
-  const dispatch = useDispatch();
-  
-  const onAddItem = (text) => {
+  const onAddItem = (text: string) => {
     dispatch(addItem(text))
   }
 
@@ -30,7 +30,7 @@ function App() {
         <ToDoList />
         {toDoList.length ?
           <div className='visible'>
-            <CountOfUncheckedItems toDoList={toDoList} />
+            <CountOfUncheckedItems />
             <FilterItemsByStatus />
           </div>
           :

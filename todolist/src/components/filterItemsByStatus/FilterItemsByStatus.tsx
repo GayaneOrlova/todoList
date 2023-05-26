@@ -1,13 +1,17 @@
 import React from "react";
 import styles from "./FilterItemsByStatus.module.css";
-import { useDispatch } from "react-redux";
 import { onClearComplited, setFilter } from "../../store/todoSlice";
+import { useAppDispatch } from "../../store/hooks";
 
-function FilterItemsByStatus() {
+type Props = {
 
-  const dispatch = useDispatch();
+};
 
-  const onFilterItems = (filterValue) => {
+const FilterItemsByStatus: React.FC<Props> = (props)=> {
+
+  const dispatch = useAppDispatch();
+
+  const onFilterItems = (filterValue: string) => {
     dispatch(setFilter(filterValue));
   }
 
