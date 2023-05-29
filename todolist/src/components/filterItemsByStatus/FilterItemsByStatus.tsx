@@ -1,5 +1,8 @@
 import React from "react";
-import styles from "./FilterItemsByStatus.module.css";
+// import styles from "./FilterItemsByStatus.module.css";
+
+import {FilterStyled} from "./FilterItemsByStatus.styled";//new
+
 import { onClearComplited, setFilter } from "../../store/todoSlice";
 import { useAppDispatch } from "../../store/hooks";
 
@@ -16,8 +19,8 @@ const FilterItemsByStatus: React.FC<Props> = (props)=> {
   }
 
   return (
-    <div className={styles.filter}>
-      <ul className={styles.filter__button}>
+    <FilterStyled>
+      <ul className="filter__button">
         <li>
           <button onClick={() => onFilterItems("all")}>All</button>
         </li>
@@ -29,7 +32,7 @@ const FilterItemsByStatus: React.FC<Props> = (props)=> {
         </li>
       </ul>
       <button onClick={() => dispatch(onClearComplited())}>Clear complited</button>
-    </div>
+    </FilterStyled>
   );
 }
 

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 // import styles from './DoubleClickInput.module.css';
 // import { onChangeValue } from "../../store/todoSlice";
 
-import {DoubleClick} from "./DoubleClickInput.styled"
+import {DoubleClickStyled} from "./DoubleClickInput.styled";
 
 type Props = {
   text: string;
@@ -35,7 +35,7 @@ const DoubleClickInput: React.FC<Props> = (props)=> {
 
   return (
     // <input
-    <DoubleClick
+    <DoubleClickStyled
       onChange={handleInputChange}
       onBlur={onLoseFocus}
       onKeyUp={handleKeyUp}
