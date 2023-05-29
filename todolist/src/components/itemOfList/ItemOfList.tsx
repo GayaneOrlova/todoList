@@ -7,6 +7,7 @@ import { useAppDispatch } from "../../store/hooks";
 type Props = {
   item: Item;
   className: string;
+  // changeValue
 };
 
 const ItemOfList: React.FC<Props> = (props)=> {
@@ -35,7 +36,7 @@ const ItemOfList: React.FC<Props> = (props)=> {
   }
 
   return (
-  <ToDoListStyled className={`input__block' + props.className`}>
+  <ToDoListStyled className={`input__block ${props.className}`}>
       <div className={props.item.checked ? `checked` : `nochecked`}>
         <div className="view">
           <label htmlFor={'radio__button' + props.item.id}>

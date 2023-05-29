@@ -1,8 +1,7 @@
 import React from "react";
-import styles from "./ToggleOfCheck.module.css";
+import {ToggleOfCheckStyled} from "./ToggleOfCheck.styled";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { onToogleCheck } from "../../store/todoSlice";
-// import {isCheckedItem} from "../../store/todoSlice";
 
 type Props = {
 
@@ -15,11 +14,12 @@ const ToggleOfCheck: React.FC<Props> = (props)=>  {
   const isCheckedItem = toDoList.find((item) => !item.checked);
 
   return (
-    <button
+  <ToggleOfCheckStyled
       title="Mark all as complete"
-      className={`${styles.toogle__button} ${isCheckedItem ? styles.toggle__noopasity : styles.toggle__opasity}`}
+      className={`toogle__button ${isCheckedItem ? "toggle__noopasity" : "toggle__opasity"}`}
       onClick={() => dispatch(onToogleCheck())}
     />
+
   )
 }
 
