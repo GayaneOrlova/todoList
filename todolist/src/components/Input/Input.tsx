@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {InputStyled} from "./Input.styled";
 
+
 type Props = {
   onFormSubmit: (v: string) => void;
 };
