@@ -1,8 +1,7 @@
 import React, { useMemo } from "react";
-import styles from "./ToDoList.module.css";
+import {ToDoListStyled} from "./ToDoList.styled"
 import ItemOfList from "../itemOfList/ItemOfList";
 import { useAppSelector } from "../../store/hooks";
-import { Item, onChangeValue } from "../../store/todoSlice";
 
 type Props = {
 
@@ -24,16 +23,15 @@ const ToDoList: React.FC<Props> = (props)=> {
 
 
   return (
-    <ul className={styles.todo__list}>
+    <ToDoListStyled>
       {filterList.map((item) => (
         <ItemOfList
           item={item}
           key={item.id}
-          // changeValue={onChangeValue}
           className="todo__list-item"
         />
       ))}
-    </ul>
+    </ToDoListStyled>
   );
 }
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import styles from './ItemOfList.module.css'
+import {ToDoListStyled} from "./ItemOfList.styled"
 import DoubleClickInput from '../doubleClickInput/DoubleClickInput';
 import { onTodoItemChecked, onTodoItemRemove, onChangeValue, Item } from "../../store/todoSlice";
 import { useAppDispatch } from "../../store/hooks";
@@ -7,7 +7,6 @@ import { useAppDispatch } from "../../store/hooks";
 type Props = {
   item: Item;
   className: string;
-  // changeValue
 };
 
 const ItemOfList: React.FC<Props> = (props)=> {
@@ -36,16 +35,16 @@ const ItemOfList: React.FC<Props> = (props)=> {
   }
 
   return (
-    <li className={`${styles.input__block} ${props.className}`}>
-      <div className={props.item.checked ? `${styles.checked}` : `${styles.nochecked}`}>
-        <div className={styles.view}>
+  <ToDoListStyled className={`input__block' + props.className`}>
+      <div className={props.item.checked ? `checked` : `nochecked`}>
+        <div className="view">
           <label htmlFor={'radio__button' + props.item.id}>
-            <div className={styles.item__radio__button}> </div>
+            <div className="item__radio__button"> </div>
           </label>
 
           <input
             id={'radio__button' + props.item.id}
-            className={styles.toggle}
+            className="toggle"
             type="checkbox"
             onClick={onCheckedItem}
             defaultChecked={props.item.checked}
@@ -53,7 +52,7 @@ const ItemOfList: React.FC<Props> = (props)=> {
 
           {!showInputForChange ?
             <p
-              className={props.item.checked ? `${styles.change__opacity}` : `${styles.nochange}`}
+              className={props.item.checked ? `change__opacity` : `nochange`}
               onDoubleClick={handleDoubleClick}
             >
               {props.item.value}
@@ -64,15 +63,15 @@ const ItemOfList: React.FC<Props> = (props)=> {
               onCloseInputForChange={closeInputForChange}
             />
           }
-
         </div>
       </div>
 
       <button
-        className={styles.delete__none}
+        className="delete__none"
         onClick={onItemRemove}
       />
-    </li>
+    {/* </li> */}
+  </ToDoListStyled>
   )
 }
 
