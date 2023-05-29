@@ -1,4 +1,8 @@
-body {
+import styled from "styled-components";
+
+export const AppStyled = styled.div`
+
+// body {
     font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
     background: #f5f5f5;
     color: #4d4d4d;
@@ -6,7 +10,7 @@ body {
     max-width: 550px;
     margin: 0 auto;
     font-weight: 300;
-}
+// }
 
 .todoapp {
     background: #fff;
@@ -14,9 +18,9 @@ body {
     box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%), 0 25px 50px 0 rgb(0 0 0 / 10%);
 }
 
-.invisible {
-    display: none;
-}
+// .invisible {
+//     display: none;
+// }
 
 .visible {
     display: flex;    
@@ -50,4 +54,4 @@ button {
     border-bottom: 1px solid;
     border-color: #ededed;
     position: relative;
-}
+}`
