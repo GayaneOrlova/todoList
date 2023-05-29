@@ -1,7 +1,4 @@
 import React, { useState } from "react";
-// import styles from './DoubleClickInput.module.css';
-// import { onChangeValue } from "../../store/todoSlice";
-
 import {DoubleClickStyled} from "./DoubleClickInput.styled";
 
 type Props = {
@@ -34,13 +31,11 @@ const DoubleClickInput: React.FC<Props> = (props)=> {
   };
 
   return (
-    // <input
     <DoubleClickStyled
       onChange={handleInputChange}
       onBlur={onLoseFocus}
       onKeyUp={handleKeyUp}
       autoFocus
-      // className={styles.double__click__input}
       defaultValue={inputValue}
       value={inputValue}
     />

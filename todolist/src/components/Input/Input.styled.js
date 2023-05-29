@@ -1,3 +1,7 @@
+import styled from "styled-components";
+
+export const InputStyled = styled.form`
+
 .new__todo {
     padding: 16px 16px 16px 60px;
     border: none;
@@ -23,3 +27,4 @@
     font-style: italic;
     opacity: 0.3;
 }
+`;

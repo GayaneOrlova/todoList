@@ -7,7 +7,7 @@ export const FilterStyled = styled.div `
     gap: 98px;
     white-space: nowrap;
 
-.filter ul {
+.filter__button {
     list-style-type: none;
     display: flex;
     justify-content: space-between;

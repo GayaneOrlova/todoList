@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import styles from "./Input.module.css";
+import {InputStyled} from "./Input.styled";
 
 type Props = {
   onFormSubmit: (v: string) => void;
 };
 
-// function Input (props) {
 const Input: React.FC<Props> = (props) => {
   const [text, setText] = useState("");
   
@@ -21,14 +20,14 @@ const Input: React.FC<Props> = (props) => {
   };
 
   return (
-    <form onSubmit={onFormSubmit}>
+    <InputStyled onSubmit={onFormSubmit}>
       <input
-        className={styles.new__todo}
+        className="new__todo"
         placeholder="What needs to be done?"
         value={text}
         onChange={onInputChange}
       />
-    </form>
+    </InputStyled>
   );
 }
 

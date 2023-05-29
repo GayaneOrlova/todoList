@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.js';
+import './App.css';
 import Title from './components/title/Title';
 import Input from './components/input/Input';
 import ToDoList from './components/toDoList/ToDoList';
