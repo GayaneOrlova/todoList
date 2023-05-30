@@ -18,6 +18,7 @@ export const InputStyled = styled.form`
     line-height: 1.4em;
     color: inherit;
   }
+  
   .new__todo:focus-visible {
     outline: none;
   }

@@ -36,8 +36,8 @@ button {
 .input {
     display: flex;
     align-items: center;
-    border-bottom: 1px solid;
-    border-color: #ededed;
+    border-bottom: ${({theme}) => theme.borderStyles.line};
+    border-color: ${({ theme }) => theme.colors.border};
     position: relative;
 }
 `

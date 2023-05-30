@@ -1,5 +1,6 @@
 import React from 'react';
-import GlobalStyle from "./globalStyles";
+import GlobalStyle from "./styles/globalStyles";
+import { ThemeProvider } from 'styled-components';
 
 import Title from './components/title/Title';
 import Input from './components/input/Input';
@@ -10,6 +11,7 @@ import ToggleOfCheck from './components/toggleOfCheck/ToggleOfCheck';
 import { useAppDispatch, useAppSelector } from './store/hooks';
 import { addItem } from './store/todoSlice';
 import { AppStyled } from './App.styled';
+import { theme } from './styles/theme';
 
 
 function App() {
@@ -23,7 +25,9 @@ function App() {
 
   return (
   <>
+  <ThemeProvider theme={theme}>
     <GlobalStyle />
+    
       <Title />
       <AppStyled>
         <div className='input'>
@@ -40,6 +44,7 @@ function App() {
             null
           }
       </AppStyled>
+      </ThemeProvider>
       </>
   );
 }
