@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import GlobalStyle from "./styles/globalStyles";
 import { ThemeProvider } from 'styled-components';
 
@@ -11,12 +11,12 @@ import ToggleOfCheck from './components/toggleOfCheck/ToggleOfCheck';
 import { useAppDispatch, useAppSelector } from './store/hooks';
 import { addItem } from './store/todoSlice';
 import { AppStyled } from './App.styled';
-import { theme } from './styles/theme';
+import { theme, theme2 } from './styles/theme';
 
 
 function App() {
   const toDoList = useAppSelector((state) => state.todos.toDoList);
-
+  const [state, setState] = useState(true)
   const dispatch = useAppDispatch();
   
   const onAddItem = (text: string) => {
@@ -25,7 +25,7 @@ function App() {
 
   return (
   <>
-  <ThemeProvider theme={theme}>
+  <ThemeProvider theme={state ? theme : theme2}>
     <GlobalStyle />
     
       <Title />
