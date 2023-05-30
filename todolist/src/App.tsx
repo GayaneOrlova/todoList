@@ -1,5 +1,6 @@
 import React from 'react';
-import  './App.css';
+import GlobalStyle from "./globalStyles";
+
 import Title from './components/title/Title';
 import Input from './components/input/Input';
 import ToDoList from './components/toDoList/ToDoList';
@@ -8,6 +9,7 @@ import FilterItemsByStatus from './components/filterItemsByStatus/FilterItemsByS
 import ToggleOfCheck from './components/toggleOfCheck/ToggleOfCheck';
 import { useAppDispatch, useAppSelector } from './store/hooks';
 import { addItem } from './store/todoSlice';
+import { AppStyled } from './App.styled';
 
 
 function App() {
@@ -20,26 +22,25 @@ function App() {
   }
 
   return (
-    // <AppStyled>
-    <>
+  <>
+    <GlobalStyle />
       <Title />
-      <section className="todoapp">
+      <AppStyled>
         <div className='input'>
-          <ToggleOfCheck />
-          <Input onFormSubmit={onAddItem}/>
-        </div>
-        <ToDoList />
-        {toDoList.length ?
-          <div className='visible'>
-            <CountOfUncheckedItems />
-            <FilterItemsByStatus />
+            <ToggleOfCheck />
+            <Input onFormSubmit={onAddItem}/>
           </div>
-          :
-          null
-        }
-      </section>
+          <ToDoList />
+          {toDoList.length ?
+            <div className='visible'>
+              <CountOfUncheckedItems />
+              <FilterItemsByStatus />
+            </div>
+            :
+            null
+          }
+      </AppStyled>
       </>
-    // </AppStyled>
   );
 }
 
