@@ -1,7 +1,6 @@
-/* import styled from "styled-components";
+/* // import styled from "styled-components";
 
-/* export const AppStyled = styled.div` */
-
+// export const AppStyled = styled.div` */
 
 body {
     font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -12,6 +11,7 @@ body {
     margin: 0 auto;
     font-weight: 300;
 }
+
 
 .todoapp {
     background: #fff;
@@ -56,4 +56,4 @@ button {
     border-color: #ededed;
     position: relative;
 }
-/* ` */
+/* `; */

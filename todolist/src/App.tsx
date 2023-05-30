@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import  './App.css';
 import Title from './components/title/Title';
 import Input from './components/input/Input';
 import ToDoList from './components/toDoList/ToDoList';
@@ -7,7 +7,7 @@ import CountOfUncheckedItems from './components/countOfUncheckedItems/CountOfUnc
 import FilterItemsByStatus from './components/filterItemsByStatus/FilterItemsByStatus';
 import ToggleOfCheck from './components/toggleOfCheck/ToggleOfCheck';
 import { useAppDispatch, useAppSelector } from './store/hooks';
-import { Item, addItem } from './store/todoSlice';
+import { addItem } from './store/todoSlice';
 
 
 function App() {
@@ -20,6 +20,7 @@ function App() {
   }
 
   return (
+    // <AppStyled>
     <>
       <Title />
       <section className="todoapp">
@@ -37,7 +38,8 @@ function App() {
           null
         }
       </section>
-    </>
+      </>
+    // </AppStyled>
   );
 }
 

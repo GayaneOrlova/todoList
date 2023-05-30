@@ -61,10 +61,12 @@ export const ToDoListStyled = styled.li`
   .change__opacity {
     opacity: 0.3;
     width: 100%;
+    display: contents;
   }
 
   .nochange {
     opacity: 1;
     width: 100%;
+    display: contents;
   }
 `;

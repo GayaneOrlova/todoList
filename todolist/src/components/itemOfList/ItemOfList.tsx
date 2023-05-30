@@ -39,7 +39,7 @@ const ItemOfList: React.FC<Props> = (props)=> {
   <ToDoListStyled className={`input__block ${props.className}`}>
       <div className={props.item.checked ? `checked` : `nochecked`}>
         <div className="view">
-          <label htmlFor={'radio__button' + props.item.id}>
+          <label htmlFor={"radio__button" + props.item.id}>
             <div className="item__radio__button"> </div>
           </label>
 
