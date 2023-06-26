@@ -1,22 +1,11 @@
-body {
-    font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    background: #f5f5f5;
-    color: #4d4d4d;
-    min-width: 230px;
-    max-width: 550px;
-    margin: 0 auto;
-    font-weight: 300;
-}
+import styled from "styled-components";
 
-.todoapp {
+export const AppStyled = styled.section`
+
+
     background: #fff;
     position: relative;
     box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%), 0 25px 50px 0 rgb(0 0 0 / 10%);
-}
-
-.invisible {
-    display: none;
-}
 
 .visible {
     display: flex;    
@@ -47,7 +36,8 @@ button {
 .input {
     display: flex;
     align-items: center;
-    border-bottom: 1px solid;
-    border-color: #ededed;
+    border-bottom: ${({theme}) => theme.borderStyles.line};
+    border-color: ${({ theme }) => theme.colors.border};
     position: relative;
 }
+`
