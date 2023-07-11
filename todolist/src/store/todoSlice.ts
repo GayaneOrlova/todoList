@@ -91,7 +91,6 @@ export const todoSlice = createSlice({
       });
     },
 
-  
 
     setTodoItem(state, action: PayloadAction<Item>) {
       state.toDoList = state.toDoList.map((e) => {

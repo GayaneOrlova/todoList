@@ -41,19 +41,9 @@ export const deleteCheckedTodo = () => {
   return axios.delete<Item[]>(`/todos/delete/checked/`)
 }
 
-// export const deleteTodo = (options: {
-//   id?: string;
-//   value?: string;
-//   checked?: boolean;
-// }) => {
-//   const {...params} = options;
-//     return axios.delete<string>(`/todos/${options.id}/delete/`, {params})
-//   }
-
-
-// export const postTodo = (value: string) => {
-//   return axios.post<string>(`/todos/`, {value})
-// }
+export const checkedAllTodo = () => {
+  return axios.post<Item[]>(`/todos/update/nochecked/`)
+}
 
 export const postTodo = (value: string) => {
   return axios.post<Item>(`/todos/`, {value})
