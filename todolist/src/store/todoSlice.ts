@@ -73,7 +73,6 @@ export const todoSlice = createSlice({
       });
     },
     
-    
     onTodoItemRemove: (state, action: PayloadAction<string>) => {
       state.toDoList = state.toDoList.filter((item) => item.id !== action.payload
       );
@@ -83,6 +82,7 @@ export const todoSlice = createSlice({
     onClearComplited: (state) => {
       state.toDoList = state.toDoList.filter((item) => !item.checked);
     },
+
 
     onToogleCheck: (state) => {
       const isCheckedItem = Boolean(state.toDoList.find((item) => !item.checked));
@@ -115,7 +115,6 @@ export const {
   onChangeValue,
   setFilter,
   addManyItems,
-  // itemRemove
 } = todoSlice.actions;
 
 
